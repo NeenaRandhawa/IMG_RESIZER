@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Resizer Pro</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100 p-4">
+        <div class="glass-card">
+            
+            <div class="text-center mb-4 header-section">
+                <h1><i class="fa-solid fa-crop-simple"></i> Ultra Resizer</h1>
+                <p>Crop, Rotate & Resize perfectly.</p>
+            </div>
+
+            <div class="upload-area" id="upload-box">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="icon-box">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h3>Upload Image</h3>
+                <p>Click or Drag & Drop here</p>
+            </div>
+
+            <div class="editor-panel" id="editor-panel">
+                <div class="row g-4">
+                    
+                    <div class="col-md-7">
+                        <div class="img-container">
+                            <img id="image-to-edit" src="" style="max-width: 100%;">
+                        </div>
+                        
+                        <div class="toolbar mt-3">
+                            <button class="tool-btn" id="rotate-left" title="Rotate Left">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                            <button class="tool-btn" id="rotate-right" title="Rotate Right">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                            <button class="tool-btn" id="flip-x" title="Flip Horizontal">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </button>
+                            <button class="tool-btn" id="flip-y" title="Flip Vertical">
+                                <i class="fa-solid fa-arrows-up-down"></i>
+                            </button>
+                            <button class="tool-btn btn-reset-crop" id="reset-crop" title="Reset">
+                                <i class="fa-solid fa-refresh"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="controls-box">
+                            
+                            <div class="mb-3">
+    <label class="label-text">Target Size Preset</label>
+    <div class="select-wrapper">
+        <select id="size-preset" class="custom-select">
+            <option value="custom">Custom (Free Crop)</option>
+            
+            <optgroup label="Official Documents (India/Standard)">
+                <option value="passport">Passport Photo (3.5cm x 4.5cm)</option>
+                <option value="pancard">Pan Card (2.5cm x 3.5cm)</option>
+                <option value="idcard">ID Card / Aadhar Style (8.5cm x 5.4cm)</option>
+                <option value="visa_us">US Visa (2x2 inch)</option>
+            </optgroup>
+
+            <optgroup label="Mobile Wallpapers">
+                <option value="mobile_hd">Android/iPhone HD (1080x1920)</option>
+                <option value="iphone_pro">iPhone 13/14/15 Pro Max (1290x2796)</option>
+                <option value="samsung_s">Samsung S Series (1440x3088)</option>
+            </optgroup>
+
+            <optgroup label="Tablets & Laptops">
+                <option value="ipad">iPad / Tablet (2048x2732)</option>
+                <option value="laptop">Laptop / MacBook Air (1920x1080)</option>
+                <option value="macbook_pro">MacBook Pro 16 (3456x2234)</option>
+                <option value="desktop_4k">4K Monitor (3840x2160)</option>
+            </optgroup>
+
+            <optgroup label="Social Media">
+                <option value="insta_sq">Instagram Post (1080x1080)</option>
+                <option value="insta_port">Instagram Portrait (1080x1350)</option>
+                <option value="story">Insta/FB Story (1080x1920)</option>
+                <option value="yt_thumb">YouTube Thumbnail (1280x720)</option>
+                <option value="yt_banner">YouTube Banner (2560x1440)</option>
+                <option value="twitter_header">Twitter Header (1500x500)</option>
+                <option value="linkedin_banner">LinkedIn Cover (1584x396)</option>
+            </optgroup>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+    </div>
+</div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label class="label-text">Width (px)</label>
+                                    <input type="number" id="width-input" class="custom-input" placeholder="W">
+                                </div>
+                                <div class="col-6">
+                                    <label class="label-text">Height (px)</label>
+                                    <input type="number" id="height-input" class="custom-input" placeholder="H">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="label-text">Quality: <span id="quality-value">90%</span></label>
+                                <input type="range" class="form-range custom-range" id="quality-slider" min="10" max="100" value="90">
+                            </div>
+
+                            <button id="download-btn" class="btn-action">
+                                <i class="fa-solid fa-download"></i> Download Result
+                            </button>
+                            
+                            <button class="btn-reset mt-3 w-100" onclick="location.reload()">
+                                Upload New Image
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
