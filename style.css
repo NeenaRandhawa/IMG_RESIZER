@@ -1,0 +1,257 @@
+/* 1. Global Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0f172a; /* Dark Blue-Black */
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 2. Background Orbs (Aesthetic Glow) */
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.5;
+}
+.orb-1 {
+    top: -50px; left: -50px;
+    width: 300px; height: 300px;
+    background: #7c3aed; /* Purple */
+}
+.orb-2 {
+    bottom: -50px; right: -50px;
+    width: 400px; height: 400px;
+    background: #2563eb; /* Blue */
+}
+
+/* 3. Glass Card Container */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 850px;
+    margin: 20px;
+}
+
+.header-section h1 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.header-section p { color: #94a3b8; font-size: 0.9rem; }
+
+/* 4. Upload Area */
+.upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.upload-area:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #60a5fa;
+}
+.icon-box {
+    font-size: 3rem;
+    color: #a78bfa;
+    margin-bottom: 10px;
+}
+
+/* 5. Editor Panel (Hidden initially) */
+.editor-panel {
+    display: none;
+    animation: fadeUp 0.5s ease-out;
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Preview Image */
+.preview-frame {
+    width: 100%;
+    height: 300px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.preview-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* 6. Inputs & Controls */
+.label-text {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.custom-input, .custom-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+.custom-input:focus, .custom-select:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.2);
+}
+
+/* Custom Dropdown Arrow Fix */
+.select-wrapper { position: relative; }
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+.custom-select { appearance: none; cursor: pointer; }
+.custom-select option { background-color: #1e293b; }
+
+/* Range Slider */
+.custom-range {
+    width: 100%;
+    accent-color: #a78bfa;
+}
+
+/* Buttons */
+.btn-action {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-reset {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #cbd5e1;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.btn-reset:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.form-check-label { color: #cbd5e1; font-size: 0.9rem; }
+/* Preview Frame Update */
+.preview-frame {
+    width: 100%;
+    height: 350px; /* Thoda height badhaya */
+    background: rgba(0, 0, 0, 0.3); /* Dark background */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+/* Canvas Styling */
+#preview-canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Thoda shadow depth ke liye */
+}
+/* Purana code same rahega, bas ye naya add karein/replace karein */
+
+/* Image Container - Iske andar Cropper initialize hoga */
+.img-container {
+    height: 400px; /* Fixed height editing ke liye */
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.img-container img {
+    max-width: 100%; 
+    display: block; /* Important for Cropper.js */
+}
+
+/* Toolbar Buttons */
+.toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tool-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-btn:hover {
+    background: #7c3aed;
+    transform: scale(1.1);
+}
+
+.btn-reset-crop {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+.btn-reset-crop:hover { background: #ef4444; color: white; }
+
+/* Cropper JS Overrides for Dark Theme */
+.cropper-view-box, .cropper-face {
+    outline-color: #7c3aed; /* Purple outline */
+}
+.cropper-line, .cropper-point {
+    background-color: #7c3aed;
+}
